@@ -1,0 +1,25 @@
+# General
+*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# React Native
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+*.jks
+*.keystore
+!debug.keystore
+
+# Snippet artifacts
+snippets/benchmark-sort/*.jar
+snippets/benchmark-sort/*.js
+!snippets/benchmark-sort/SortBenchmark.ts

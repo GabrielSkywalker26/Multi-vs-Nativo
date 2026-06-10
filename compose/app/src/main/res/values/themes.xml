@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.APPCOMPARATIVA" parent="Theme.MaterialComponents.Light" />
+</resources>
