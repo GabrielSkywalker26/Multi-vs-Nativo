@@ -49,5 +49,7 @@ fun main() {
     }
 
     println("Sorted $count products in ${time}ms")
-    println("Top product: ${sorted[0].name} with priority ${String.format("%.4f", calculatePriority(sorted[0], now))}")
+    val topProduct = sorted[0]
+    val priority = calculatePriority(topProduct, now)
+    println("Top product: ${topProduct.name} with priority ${String.format(java.util.Locale.US, "%.4f", priority)}")
 }

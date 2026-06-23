@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainNavigation() {
     val viewModel: InventoryViewModel = viewModel()
-    val backStack = rememberNavBackStack(Destination.ProductList as NavKey)
+    val backStack = rememberNavBackStack(Destination.ProductList() as NavKey)
 
     val windowAdaptiveInfo = currentWindowAdaptiveInfo()
     val directive = remember(windowAdaptiveInfo) {

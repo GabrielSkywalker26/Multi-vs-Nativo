@@ -25,8 +25,7 @@ function generateMockProducts(count: number): Product[] {
   return products;
 }
 
-function calculatePriority(product: Product): number {
-  const now = new Date();
+function calculatePriority(product: Product, now: Date): number {
   const lastRestock = new Date(product.lastRestockDate);
   const diffTime = Math.abs(now.getTime() - lastRestock.getTime());
   const daysSinceRestock = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -44,11 +43,22 @@ function calculatePriority(product: Product): number {
 const count = 50000;
 console.log(`Generating ${count} products...`);
 const products = generateMockProducts(count);
+const now = new Date();
 
 console.log(`Starting sort benchmark (Node.js)...`);
 const start = Date.now();
-const sorted = [...products].sort((a, b) => calculatePriority(b) - calculatePriority(a));
+
+// Pre-calculate priorities to make it a fair comparison with Kotlin's sortedBy
+// Kotlin's sortedBy calculates the selector once per element.
+// In JS .sort() calls the comparator multiple times per element,
+// so we map to include priority first.
+const productsWithPriority = products.map(p => ({
+  product: p,
+  priority: calculatePriority(p, now)
+}));
+
+productsWithPriority.sort((a, b) => b.priority - a.priority);
 const end = Date.now();
 
 console.log(`Sorted ${count} products in ${end - start}ms`);
-console.log(`Top product: ${sorted[0].name} with priority ${calculatePriority(sorted[0]).toFixed(4)}`);
+console.log(`Top product: ${productsWithPriority[0].product.name} with priority ${productsWithPriority[0].priority.toFixed(4)}`);
