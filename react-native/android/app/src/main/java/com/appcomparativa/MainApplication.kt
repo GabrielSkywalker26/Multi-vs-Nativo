@@ -3,17 +3,14 @@ package com.appcomparativa
 import android.app.Application
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
-import com.facebook.react.ReactHost
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
-import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
 
 class MainApplication : Application(), ReactApplication {
 
-  override val reactNativeHost: ReactNativeHost =
+  private val mReactNativeHost: ReactNativeHost =
       object : DefaultReactNativeHost(this) {
         override fun getPackages(): List<ReactPackage> =
             PackageList(this).packages
@@ -26,8 +23,7 @@ class MainApplication : Application(), ReactApplication {
         override val isHermesEnabled: Boolean = true
       }
 
-  override val reactHost: ReactHost
-    get() = getDefaultReactHost(this.applicationContext, reactNativeHost)
+  override fun getReactNativeHost(): ReactNativeHost = mReactNativeHost
 
   override fun onCreate() {
     super.onCreate()

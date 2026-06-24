@@ -44,18 +44,9 @@ chmod +x run.sh
 
 ### React Native
 
-1. Entrar a la carpeta:
-cd react-native
+npx react-native bundle --platform android --dev true --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 
-2. Instalar dependencias:
-npm install
-
-3. Iniciar Metro Bundler:
-npm start
-
-4. Ejecutar en Android (en otra terminal):
-cd react-native
-npm run android
+npx react-native run-android --deviceId emulator-5554
 
 ---
 

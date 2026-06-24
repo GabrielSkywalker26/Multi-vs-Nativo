@@ -26,6 +26,10 @@ android {
     namespace "com.appcomparativa"
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId "com.appcomparativa"
         minSdkVersion rootProject.ext.minSdkVersion
